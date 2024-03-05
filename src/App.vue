@@ -1,28 +1,32 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <HomePageTop :isLogin.sync="isLogin"  class="simple"></HomePageTop>
+    <router-view :isLogin.sync="isLogin"></router-view>
+    <PageBelow class="simple" ></PageBelow>
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
-
+import PageBelow from "@/components/PageBelow.vue";
+import HomePageTop from "@/components/HomePageTop.vue";
 export default {
-  name: 'App',
-  components: {
-    HelloWorld
-  }
+  components:{
+    PageBelow,
+    HomePageTop,
+  },
+  data(){
+    return{
+      isLogin:false,
+      logined:false,
+    }
+  },
+  methods:{
+  },
 }
 </script>
 
 <style>
 #app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
 }
+
 </style>
