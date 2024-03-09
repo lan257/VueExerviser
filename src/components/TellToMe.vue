@@ -31,7 +31,7 @@ export default {
   height: auto;
   width: auto;
   float: left;
-  margin-left: 200px;
-  margin-top: 70px;
+  margin-left: 300px;
+  margin-top: 100px;
 }
 </style>

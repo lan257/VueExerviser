@@ -33,7 +33,8 @@ export default {
 <template>
     <div class="ApiLeft">
       <h3 align="center">目录</h3>
-      <div class="choose" v-for="item in list" :key="item.id" @click="click(item.id)"><a>{{item.value}}</a><a v-if="item.id!==6" style="float: right" @click="off(item.id)">{{item.isShow?'收起':'展开'}}</a><br>
+      <div class="choose" v-for="item in list" :key="item.id" @click="click(item.id)"><a>{{item.value}}</a>
+        <a v-if="item.id!==6" style="color: blue;cursor: pointer; float: right" @click="off(item.id)">{{item.isShow?'[收起]':'[展开]'}}</a><br>
         <div v-show="item.isShow"><div class="choose2" v-for="item2 in list2" :key="item2.id"><a >{{item2.value}}</a><br></div>
       </div>
       </div>

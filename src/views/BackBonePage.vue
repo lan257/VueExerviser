@@ -21,7 +21,7 @@ export default {
 <style scoped>
 .TopEst{
   width: 100%;
-  height: 597px;
+  height: 900px ;
   //height: 100%;
   align-items: stretch;
   //background: #42b983;

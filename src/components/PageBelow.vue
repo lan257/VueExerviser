@@ -20,7 +20,7 @@ export default {
 <style scoped>
 .down{
   width: 100%;
-  height: 470px;
+  height: 600px;
   left: 0;
   bottom: 0;
   background-color: RGB(36,36,36) ;
