@@ -5,6 +5,8 @@
   <router-link :to="href[item.id]" class="aBorder a1" v-for="item in choose " :key="item.id" @click="click(item.id)">
     <span style="color:white">{{ item.value }}</span>
   </router-link>
+<!--  <input style="margin-left: 100px; color: RGB(36,36,36); width:700px" height="200px" type="search" v-model="search" placeholder="查询">-->
+<!--  <button @click="search" style="color: aliceblue ; margin-left: 70px; font-size: 20px">查询</button>-->
 <!--  v-show="isShow(item.id)"-->
 <!--  <span style=" border-right:470px double black;"/>-->
   <a :href="href[item.id]" v-show="!((item.id===0&&!user)||(item.id===2&&!user)||(item.id===5&&user))" class="aBorder a2" v-for="item in choose2 " :key="item.id" @click="click(item.id)">
@@ -15,6 +17,7 @@
 </div>
 </template>
 <script>
+
 import {GetFetch} from "@/components/fetch";
 
 export default {
@@ -32,6 +35,7 @@ export default {
         {'id':4,'value':'use in web'},
         {'id':5,'value':'login'}],
       me:{},
+      search:'',
       user:false,
       href:['/','/','/','#/downloadApk','#/backBonePage','#/backBonePage','/backBonePage','/Project','/api'],
     }
@@ -54,9 +58,6 @@ export default {
       else if (item===6){this.$emit('update:isLogin',false);
         // this.href='#/backBonePage'
       }
-      // else if (item===7){this.href='#/api'}
-      // else if (item===8){this.href='#/api'}
-      // else if (item===3){this.href='#/downloadApk'}
     },
   },
   async created() {
@@ -70,19 +71,34 @@ export default {
 
 <style scoped>
 .TopEst{
-  height: 30px;
+  //height: 34px;
   background-color: black;
-  border:15px solid black;
+  //border:15px solid black;
 }
 .aBorder{
-  border: 15px solid black;
-  border-top-width:7px;
-  border-bottom-width: 7px;
+  //border-left: 15px solid black;
+  //border-right: 15px solid black;
+  //border-top-width:7px;
+  ////border-bottom-width: 7px;
+  //display: inline-block;
+  //text-align: center;
+  //line-height: 70px; /* 控制文本垂直居中 */
 }
 .a1{
+  width: 100px;
+  display: inline-block;
+  text-align: center;
+  line-height: 70px; /* 控制文本垂直居中 */
   float: left;
 }
 .a2{
+  display: inline-block;
+  border-right: 30px solid black;
+  text-align: center;
+  line-height: 70px; /* 控制文本垂直居中 */
   float: right;
+}
+.router-link-exact-active{
+background-color: cornflowerblue;
 }
 </style>
