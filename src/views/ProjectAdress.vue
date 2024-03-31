@@ -11,6 +11,7 @@ export default {
       userList:{
 
       },
+      page:1,
       head:{
         uid:'用户uid',
         nickname:'用户昵称',
@@ -32,15 +33,19 @@ export default {
 <template>
   <div>
     <h1 align="center">项目地址</h1>
+    <ApiDetail align="center"><template v-slot:title>作者github主页地址:</template>
+    <template v-slot:detail><br><a href="https://github.com/lan257">https://github.com/lan257</a></template></ApiDetail>
+    <ApiDetail align="center"><template v-slot:title>后端SpringBoot项目github地址:</template>
+    <template v-slot:detail><br><a href="https://github.com/lan257/exerciser">https://github.com/lan257/exerciser</a></template></ApiDetail>
     <ApiDetail align="center"><template v-slot:title>前端Vue项目github地址:</template>
       <template v-slot:detail><br><a href="https://github.com/lan257/VueExerviser">https://github.com/lan257/VueExerviser</a></template> </ApiDetail>
-    <ApiDetail align="center"><template v-slot:title>后端SpringBoot项目github地址:</template>
-      <template v-slot:detail><br><a href="https://github.com/lan257/exerciser">https://github.com/lan257/exerciser</a></template></ApiDetail>
     <ApiDetail align="center">
       <template v-slot:title>Android端项目github地址:</template>
       <template v-slot:detail><br><a href=" https://github.com/lan257/AndroidExerviser">https://github.com/lan257/AndroidExerviser</a>
       </template>
     </ApiDetail>
+
+
     <div class="table">
       <h2 align="center">项目开发团队</h2>
       <span style="float: right;color: lightgray;">(仅列出部分开发人员)</span><br>
@@ -49,6 +54,9 @@ export default {
       <userLine :user.sync="userList[index]" :color="index%2===1?1:0"></userLine>
     </div>
 
+      <div align="center"><a style="color: blue;cursor: pointer;" @click="page--" >上一页</a>
+        <input type="text" v-model="page">
+        <a style="color: blue;cursor: pointer;" @click="page++" >下一页</a></div>
     </div>
   </div>
 </template>

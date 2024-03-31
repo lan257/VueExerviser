@@ -2,54 +2,41 @@
 export default {
   data(){
     return{
-      former:[false,false,false,false,false,false,false,false],
-      latter:[false,false,false,false,false,false,false,false],
-      result:[false,false,false,false,false,false,false,false],
+      bit:16,
+      former:0,
+      latter:0,
+      result:0,
+      result1:0,
       mathMod:'+',
       ten:[0,0,0],
       isEnd:'0+0=0',
     }
   },
+  created() {
+    this.former=this.getTwo()
+    this.latter=this.getTwo()
+    this.result=this.getTwo()
+  },
   methods: {
+    //二进制转十进制
+    toTen(a){
+      let result = 0;
+      for (let i = 1; i < this.bit ; i++) {
+        if (a[i]) {
+          result= result+Math.pow(2,this.bit -i-1)
+        }}
+      return result;
+    },
     startRun(){
       let res=this.runOperation(this.former,this.latter)
-      // alert(res)
-      this.result=[res[0],res[1],res[2],res[3],res[4],res[5],res[6],res[7]]
+      this.result=this.o(res)
     },
     runOperation(a,b){
       if (this.mathMod==='+'){
-        if (!a[0]&&!b[0]){return this.Add(a,b)}
-        else if (a[0]&&b[0]){
-          let res= this.Add(a,b)
-          res[0]=true
-          return res
-        }
-        else if (a[0]&&!b[0]){
-          let e =[!a[0],a[1],a[2],a[3],a[4],a[5],a[6],a[7]]
-          return this.minus(b, e)
-        }else {
-          let d =[!b[0],b[1],b[2],b[3],b[4],b[5],b[6],b[7]]
-          return this.minus(a, d)
-        }
+        return this.ADD(a,b)
       }
       else if (this.mathMod==='-'){
-        if (!a[0]&&!b[0]){return this.minus(a,b);}
-        else if (a[0]&&b[0]){
-          let d =[!b[0],b[1],b[2],b[3],b[4],b[5],b[6],b[7]]
-          let e =[!a[0],a[1],a[2],a[3],a[4],a[5],a[6],a[7]]
-          return this.minus(d, e)
-        }
-        else if (a[0]&&!b[0]){
-          let e =[!a[0],a[1],a[2],a[3],a[4],a[5],a[6],a[7]]
-          let res=this.Add(e,b)
-          res[0]=!res[0]
-          return res
-        }else {
-          let d =[!b[0],b[1],b[2],b[3],b[4],b[5],b[6],b[7]]
-          let res=this.Add(a,d)
-          res[0]=!res[0]
-          return res
-        }
+        return this.minus(a,b)
       }
       else if (this.mathMod==='*'){
         return this.taken(a,b)
@@ -58,149 +45,143 @@ export default {
         return this.exp(a,b)
       }
     },
-    Add(c,d){
-      let a=[c[0],c[1],c[2],c[3],c[4],c[5],c[6],c[7]]
-      let b=[d[0],d[1],d[2],d[3],d[4],d[5],d[6],d[7]]
-      let res=[false,false,false,false,false,false,false,false]
+    //定点整数加法(补码)
+    ADD(a,b){
+      return this.complement(this.Add(this.complement(a),this.complement(b)))
+    },
+    //无符号数加法
+    Add(a,b){
+      let res=this.getTwo()
       let enter = false;
-      for (let i = this.former.length-1; i >= 0; i--) {
+      for (let i = this.bit-1; i >= 0; i--) {
         let s1=(!(a[i] && b[i])) && (a[i]||b[i])
         res[i]=(!(s1 && enter)) && (s1||enter)
         enter=(a[i] && b[i])||(enter && s1)
       }
       return res;
     },
+    //定点整数减法(补码)
     minus(a,b) {
-      let d =[b[0],b[1],b[2],b[3],b[4],b[5],b[6],b[7]]
-      let res=[!b[0],!b[1],!b[2],!b[3],!b[4],!b[5],!b[6],!b[7]]
-      let e=[a[0],a[1],a[2],a[3],a[4],a[5],a[6],a[7]]
-      let c=[false,false,false,false,false,false,false,true]
-      d=this.Add(res,c)
-      res=this.Add(this.complement(e),d)
-      if (res[0]){
-        let i
-        for(i=7;!res[i];i--){
-          console.log(res[i])
-        }
-        for (let j=i-1;j>0;j--){
-          res[j]=!res[j]
-        }
-      }
-      return res
+      b[0]=!b[0]
+      let c= this.ADD(a,b)
+      b[0]=!b[0]
+      return c
     },
+    //定点整数乘法
     taken(a,b) {
-      let c,d=0
-      for (let i = 1; i < this.former.length; i++) {
+      let d=this.getTwo()
+      for (let i = 1; i < this.bit; i++) {
         if (b[i]){
-          c=a
-          for (let j = 0; j <this.former.length- i-1; j++) {
-            c=this.leftMove(c)
-          }
-          d=this.Add(d,c)
+          d=this.Add(d,this.left(a,this.bit- i-1))
         }
       }
       d[0]=((!a[0]&&b[0])||(a[0]&&!b[0]))
       return d;
     },
+    //定点整数除法
     exp(a,b){
-      let t=0, c,f,e=[false,false,false,false,false,false,false,false]
-      let d=[false,a[1],a[2],a[3],a[4],a[5],a[6],a[7]]
-      for (let i = 1; i < this.former.length; i++) {
-        f=[false,b[1],b[2],b[3],b[4],b[5],b[6],b[7]]
-        for (let j = 0; j < this.former.length-1-i ; j++) {
+      let t, c,f,e=this.getTwo()
+      let d=this.o(a)
+      d[0]=false
+      for (let i = 1; i < this.bit; i++) {
+        f=this.o(b)
+        f[0]=false
+        for (let j = 0; j < this.bit-1-i ; j++) {
           f = this.leftMove(f)
           if (f[1]) {
             t = j
-            i = this.former.length - t - 2
+            i = this.bit - t - 2
             break}}
         c=this.minus(d,f)
         e[i]=!c[0]
         d=c[0]?d:c
         }
       e[0]=((!a[0]&&b[0])||(a[0]&&!b[0]))
+      this.result1='...'+this.toTen(d);
       return e;
-    },
-    //左移×2
-    leftMove(a){
-      return [a[0],a[2],a[3],a[4],a[5],a[6],a[7],false]
-    },
-    //右移/2
-    rightMave(a){
-      return [a[0],false,a[1],a[2],a[3],a[4],a[5],a[6]]
-    },
-    //求反码
-    againCode(a){
-      if (a[0]){
-        for (let i = 1; i < this.former.length; i++) {
-          a[i]=!a[i]}}
-      return a;
-    },
-    //回原码
-    reAC(a){
-      return this.againCode(a)
     },
     //求补码
     complement(a){
-      if (a[0]) {
-      let b=[false,false,false,false,false,false,false,true]
-        a=this.Add(this.againCode(a),b)
-      }
+      if (a[0]){
+        let t=false,b=this.getTwo()
+        b[0]=a[0];
+        for (let i = this.bit-1; i>0 ; i--) {
+          b[i]=t?!a[i]:a[i]
+          t=a[i]?true:t
+        }
+        return b;}
       return a;
     },
-    //回原码
-    reCC(a){
-      let i,b
-      for (i = this.former.length-1;a[i];i--){b[i]=a[i]}
-      for (let j = i-1; j > 0; i--) { b[j]=!a[j]}
-      alert(b)
+    //左移i位
+    left(a,i){
+      let b=this.o(a);
+      for (let j = 0; j < i; j++) {
+        b = this.leftMove(b)
+      }
       return b
     },
+    //左移×2
+    leftMove(a){
+      let x=this.o(a);
+      for (let i = 1; i < this.bit; i++) {
+        x[i]=x[i+1]
+      }
+      x[this.bit-1]=false
+      return x
+    },
+    //获得默认二进制值
+    getTwo(){
+      let x=[false,false];
+      for (let i = 0; i < this.bit; i++) {
+        x[i]=false
+      }
+      return x
+    },
+    //轻赋值
+    o(a){
+      let x=this.getTwo();
+      for (let i = 0; i < this.bit; i++) {
+        x[i]=a[i]
+      }
+      return x
+    },
+    //右移/2
+    rightMove(a){
+      let x=this.o(a);
+      for (let i = this.bit-1; i >1; i--) {
+        x[i]=x[i-1]
+      }
+      x[1]=false
+      return x
+    },
     //求移码
-    frameCode(a){
-      a=this.complement(a)
-      a[0]=!a[0]
-      return a
-    },
+    // frameCode(a){
+    //   a=this.complement(a)
+    //   a[0]=!a[0]
+    //   return a
+    // },
     //回原码
-    reFC(a){
-      //回补码
-      a[0]=!a[0]
-      //回原码
-      return this.reCC(a)
-    },
-
+    // reFC(a){
+    //   //回补码
+    //   a[0]=!a[0]
+    //   //回原码
+    //   return this.reCC(a)
+    // },
   },
   watch:{
     former(){
-      let result = 0;
-      for (let i = 1; i < this.former.length ; i++) {
-        if (this.former[i]) {
-          result= result+Math.pow(2,this.former.length -i-1)
-        }}
+      let result=this.toTen(this.former)
       this.ten[0]=this.former[0]===false?result:-result
-      this.isEnd=this.ten[0]+this.mathMod+this.ten[1]+"="+this.ten[2]
-    },
-    mathMod(){
-      this.isEnd=this.ten[0]+this.mathMod+this.ten[1]+"="+this.ten[2]
     },
     latter(){
-      let result = 0;
-      for (let i = 1; i < this.latter.length; i++) {
-        if (this.latter[i]) {
-          result= result+Math.pow(2,this.latter.length-1-i)
-        }}
+      let result=this.toTen(this.latter)
       this.ten[1]=this.latter[0]===false?result:-result
-      this.isEnd=this.ten[0]+this.mathMod+this.ten[1]+"="+this.ten[2]
     },
     result(){
-      let result = 0;
-      for (let i = 1; i < this.result.length; i++) {
-        if (this.result[i]) {
-          result = result + Math.pow(2, this.result.length - i - 1)
-        }
-      }
+      let result=this.toTen(this.result)
       this.ten[2]=this.result[0]===false?result:-result
       this.isEnd=this.ten[0]+this.mathMod+this.ten[1]+"="+this.ten[2]
+      if (this.mathMod==='/'){ this.isEnd+=this.result1}
     }
   }
 }
@@ -229,10 +210,10 @@ export default {
       </th>
       <th>
         <select v-model="mathMod">
-          <option value='+'    >＋</option>
-          <option value='-'    >-</option>
-          <option value='*'    >*</option>
-          <option value='/'    >/</option>
+          <option value='+'>＋</option>
+          <option value='-'>-</option>
+          <option value='*'>*</option>
+          <option value='/'>/</option>
         </select>
       </th>
       <th>
@@ -251,7 +232,7 @@ export default {
         <table>
           <tr>
             <th v-for="( item,index) in result" :key="index">
-              <input type="checkbox" v-model="result[index]">
+              <input type="checkbox" :checked="result[index]">
             </th>
           </tr>
         </table>
@@ -265,7 +246,7 @@ export default {
       <th>{{ ten[2] }}</th>
     </tr>
   </table>
-
+<h1></h1>
 </div>
 </template>
 
