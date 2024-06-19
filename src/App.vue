@@ -1,15 +1,15 @@
 <template>
   <div id="app">
-    <HomePageTop :isLogin.sync="isLogin"  class="simple"></HomePageTop>
+    <HomePageTop class="simple"></HomePageTop>
 <br><br><br>
-    <router-view :isLogin.sync="isLogin"></router-view>
+    <router-view ></router-view>
     <PageBelow class="simple" ></PageBelow>
   </div>
 </template>
 
 <script>
-import PageBelow from "@/components/PageBelow.vue";
-import HomePageTop from "@/components/HomePageTop.vue";
+import PageBelow from "@/components/mainBoby/PageBelow.vue";
+import HomePageTop from "@/components/mainBoby/HomePageTop.vue";
 export default {
   components:{
     PageBelow,
@@ -17,8 +17,6 @@ export default {
   },
   data(){
     return{
-      isLogin:false,
-      logined:false,
     }
   },
   methods:{

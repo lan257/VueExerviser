@@ -1,5 +1,6 @@
+<!--安卓app安装包apk-->
 <script>
-import TFmod from '@/components/TFmod.vue'
+import TFmod from '@/components/android/TFmod.vue'
 export default {
   components:{
     TFmod,

@@ -1,6 +1,7 @@
+<!--首页页面导航-->
 <script>
-import LoginPage from "@/components/LoginPage.vue";
-import AppShow from '@/components/AppShow.vue'
+import LoginPage from "@/components/account/LoginPage.vue";
+import AppShow from '@/components/home/AppShow.vue'
 export default {
   components: {
     LoginPage,AppShow,
@@ -13,8 +14,8 @@ export default {
 <div class="TopEst">
 <!--  中间展示页面组件-->
   <br>
-  <LoginPage v-show="isLogin"></LoginPage>
-  <AppShow v-show="!isLogin"/>
+  <LoginPage v-show="this.$store.state.isShow"></LoginPage>
+  <AppShow v-show="!this.$store.state.isShow"/>
 </div>
 </template>
 

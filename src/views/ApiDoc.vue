@@ -1,16 +1,13 @@
+
+//api文档交互导航页面
 <script>
-import ApiLeft from "@/components/ApiLeft.vue";
-import ApiRight from "@/components/ApiRight.vue"
+import ApiRight from "@/components/api/ApiRight.vue"
+import ApiLeft from "@/components/api/ApiLeft.vue";
 export default {
   components:{
-    ApiLeft,
     ApiRight,
+    ApiLeft,
   },
-  data(){
-    return{
-      apiId:1,
-    }
-  }
 }
 </script>
 
@@ -19,8 +16,8 @@ export default {
 <!--    <h1 align="center">这是api接口文档</h1>-->
     <br>
     <div class="mid">
-      <ApiLeft class="left" :apiId.sync="apiId"></ApiLeft>
-      <ApiRight class="right" :apiId.sync="apiId"></ApiRight>
+      <ApiLeft class="left" ></ApiLeft>
+      <ApiRight class="right" ></ApiRight>
   </div>
   </div>
 </template>
@@ -30,12 +27,12 @@ export default {
 
 }
 .mid{
-  display: flex;
+  display: flex
 }
 .left{
-  flex:1
+  flex: 1
 }
 .right{
-  flex: 3;
+  flex: 3
 }
 </style>

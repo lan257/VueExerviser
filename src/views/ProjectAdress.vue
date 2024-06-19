@@ -1,7 +1,8 @@
+<!--项目github地址导航-->
 <script>
-import ApiDetail from '@/components/ApiDetail.vue'
+import ApiDetail from '@/components/api/ApiDetail.vue'
 import userLine from "@/components/userLine.vue";
-import {Fetch} from "@/components/fetch";
+import {Fetch} from "@/tool/fetch";
 export default {
   components:{
     ApiDetail,userLine
@@ -32,31 +33,32 @@ export default {
 
 <template>
   <div>
-    <h1 align="center">项目地址</h1>
-    <ApiDetail align="center"><template v-slot:title>作者github主页地址:</template>
+    <h1 align="center" class="cn">项目地址</h1>
+    <ApiDetail align="center"><template v-slot:title><span class="cn">作者github主页地址:</span></template>
     <template v-slot:detail><br><a href="https://github.com/lan257">https://github.com/lan257</a></template></ApiDetail>
-    <ApiDetail align="center"><template v-slot:title>后端SpringBoot项目github地址:</template>
+    <ApiDetail align="center"><template v-slot:title><span class="cn">后端SpringBoot项目github地址:</span></template>
     <template v-slot:detail><br><a href="https://github.com/lan257/exerciser">https://github.com/lan257/exerciser</a></template></ApiDetail>
-    <ApiDetail align="center"><template v-slot:title>前端Vue项目github地址:</template>
+    <ApiDetail align="center"><template v-slot:title><span class="cn">前端Vue项目github地址:</span></template>
       <template v-slot:detail><br><a href="https://github.com/lan257/VueExerviser">https://github.com/lan257/VueExerviser</a></template> </ApiDetail>
     <ApiDetail align="center">
-      <template v-slot:title>Android端项目github地址:</template>
+      <template v-slot:title><span class="cn">Android端项目github地址:</span></template>
       <template v-slot:detail><br><a href=" https://github.com/lan257/AndroidExerviser">https://github.com/lan257/AndroidExerviser</a>
       </template>
     </ApiDetail>
 
 
     <div class="table">
-      <h2 align="center">项目开发团队</h2>
-      <span style="float: right;color: lightgray;">(仅列出部分开发人员)</span><br>
+      <h2 class="cn" align="center">项目开发团队</h2>
+      <span class="cn" style="float: right;color: lightgray;">(仅列出部分开发人员)</span><br>
     <userLine :user.sync="head" :color="1"></userLine>
     <div v-for="(item,index) in userList" :key="item.uid">
       <userLine :user.sync="userList[index]" :color="index%2===1?1:0"></userLine>
     </div>
-
-      <div align="center"><a style="color: blue;cursor: pointer;" @click="page--" >上一页</a>
-        <input type="text" v-model="page">
-        <a style="color: blue;cursor: pointer;" @click="page++" >下一页</a></div>
+      <el-pagination class="table"
+          background
+          layout="prev, pager, next"
+          :total="1000">
+      </el-pagination>
     </div>
   </div>
 </template>
@@ -66,4 +68,6 @@ export default {
   margin-left: 375px;
   margin-right: 435px;
 }
+.cn{font-family: "Helvetica Neue",Helvetica,"PingFang SC","Hiragino Sans GB","Microsoft YaHei","微软雅黑",Arial,sans-serif;
+  cursor: default}
 </style>

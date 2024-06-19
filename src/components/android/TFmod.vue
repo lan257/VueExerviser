@@ -58,7 +58,9 @@ export default {
         res[i]=(!(s1 && enter)) && (s1||enter)
         enter=(a[i] && b[i])||(enter && s1)
       }
-      return res;
+      if(a[0]&&a[0]&&!res[0]){alert("下溢")}
+      if((!a[0]&&!a[0]&&res[0])){alert("上溢")}
+        return res;
     },
     //定点整数减法(补码)
     minus(a,b) {
@@ -246,7 +248,7 @@ export default {
       <th>{{ ten[2] }}</th>
     </tr>
   </table>
-<h1></h1>
+<!--  {{ $store.state.test }}-->
 </div>
 </template>
 

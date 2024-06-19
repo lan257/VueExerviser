@@ -1,5 +1,4 @@
 
-
 <template>
   <div>
   <button class="but" @click="count--" >-</button>

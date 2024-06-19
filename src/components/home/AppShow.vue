@@ -1,3 +1,4 @@
+<!--网站首页-->
 <script>
 // import PlatForm from "@/components/PlatForm.vue";
 export default {
@@ -20,10 +21,10 @@ export default {
 
 <template>
   <div >
-    <h1 style=" font-size: 60px; color: paleturquoise; margin-top: 60px;margin-left: 200px;">缘风，跨越诸多平台</h1>
-    <h1 style=" font-size: 50px; color: paleturquoise; margin-top: 20px;margin-left: 600px;">探索用户体验的极限</h1>
-    <h1 style=" font-size: 60px; color: paleturquoise; margin-top: 60px;margin-left: 270px;">期望，你述说给我的</h1>
-    <h1 style=" font-size: 50px; color: paleturquoise; margin-top: 20px;margin-left: 700px;">化作正在感受的暖心</h1>
+    <h1 class="cn" style=" font-size: 60px; color: paleturquoise; margin-top: 60px;margin-left: 200px;">缘风，跨越诸多平台</h1>
+    <h1  class="cn" style=" font-size: 50px; color: paleturquoise; margin-top: 20px;margin-left: 600px;">探索用户体验的极限</h1>
+    <h1  class="cn" style=" font-size: 60px; color: paleturquoise; margin-top: 60px;margin-left: 270px;">期望，你述说给我的</h1>
+    <h1  class="cn" style=" font-size: 50px; color: paleturquoise; margin-top: 20px;margin-left: 700px;">化作正在感受的暖心</h1>
 <!--    <div style="display: flex;"><div style="flex:0.6"></div>-->
 <!--    <PlatForm :title="title[0]" :imgUri="imgUri" style="flex:1"></PlatForm>-->
 <!--      <div style="flex:0.5"></div>-->
@@ -32,5 +33,6 @@ export default {
 </template>
 
 <style scoped>
-
+.cn{font-family: "Helvetica Neue",Helvetica,"PingFang SC","Hiragino Sans GB","Microsoft YaHei","微软雅黑",Arial,sans-serif;
+cursor: default}
 </style>

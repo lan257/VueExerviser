@@ -21,8 +21,8 @@ export default {
 
 <template>
   <div class="top-est">
-  <slot><span style="color: aliceblue;">联系我们</span></slot><br>
-  <span v-for ="item in this.list" :key="item.id"><a @click="Tell(item)">{{item.value}}</a><br></span>
+  <slot><span class="cn" style="color: aliceblue;">联系我们</span></slot><br>
+  <span class="cn" v-for ="item in this.list" :key="item.id"><a @click="Tell(item)">{{item.value}}</a><br></span>
   </div>
 </template>
 
@@ -33,5 +33,8 @@ export default {
   float: left;
   margin-left: 300px;
   margin-top: 100px;
+}
+.cn{
+  font-family: "Helvetica Neue",Helvetica,"PingFang SC","Hiragino Sans GB","Microsoft YaHei","微软雅黑",Arial,sans-serif;
 }
 </style>

@@ -2,7 +2,7 @@
 //deliver(url,data)传入url(请求发送目标，例如myVariablelogin")
 // 和data(发送数据，如{name: '6512', email: '758439675'})
 //返回后端返回数据
-let vid = "https://2w513euuq12k.ngrok.xiaomiqiu123.top";
+export let vid = "https://2w513euuq12k.ngrok.xiaomiqiu123.top";
 if(localStorage.getItem("yes")==="1"){
     vid="http://localhost:8080";
 }

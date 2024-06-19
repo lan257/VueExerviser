@@ -1,5 +1,5 @@
 <script>
-import TellToMe from "@/components/TellToMe.vue";
+import TellToMe from "@/components/cell/TellToMe.vue";
 export default {
   components: {
     TellToMe,

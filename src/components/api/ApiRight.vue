@@ -3,6 +3,7 @@
     <h3 align="center">{{ title }}</h3>
     <div class="detail">
       <div class="left">
+<!--        是{{this.$store.state.apiId}}-->
         <ApiDetail v-for="item in titleList" :key="item.id" :item="item" @dblclick="toggleEditMode(item)">
           <template v-slot:title ><span style="cursor: default;">{{ item.value }}</span></template>
           <template v-slot:detail>
@@ -23,23 +24,26 @@
               <option value='videoSmail' >videoSmail</option>
               <option value='api'        >api</option>
               <option value='activity'   >activity</option>
+              <option value='dishes'     >dishes</option>
+              <option value='order'      >order</option>
             </select>
             <!--            <textarea readonly v-if="item.id>2" required v-model="item.data1" style="width: 250px;height: 100px" v-show="!item.editMode && item.id>2"></textarea>-->
             <span v-show="!item.editMode && item.id<3" @dblclick="item.editMode=true;title='修改接口'">{{ item.data }}</span>
           </template>
         </ApiDetail>
-        <button class="leftWhite" v-show="title !== '接口'" @click="exitEdit()">退出</button>
-        <button class="leftWhite" v-show="title === '接口'" @click="uploadApi()">上传接口</button>
-        <button class="leftWhite" v-show="title === '上传接口'" @click="confirmUpload()">确定上传</button>
-        <button class="leftWhite" v-show="title === '修改接口'" @click="updateApi()">上传修改</button>
+        <el-button type="success" plain  class="leftWhite" v-show="title !== '接口'" @click="exitEdit()">退出</el-button>
+        <el-button type="success" plain  class="leftWhite" v-show="title === '接口'" @click="uploadApi()">上传接口</el-button>
+        <el-button type="success" plain class="leftWhite" v-show="title === '上传接口'" @click="confirmUpload()">确定上传</el-button>
+        <el-button type="success" plain  class="leftWhite" v-show="title === '修改接口'" @click="updateApi()">上传修改</el-button>
       </div>
     </div>
   </div>
 </template>
 
 <script>
-import ApiDetail from '@/components/ApiDetail.vue';
-import { Fetch } from "@/components/fetch";
+import ApiDetail from '@/components/api/ApiDetail.vue';
+import { Fetch } from "@/tool/fetch";
+import {mapState}  from "vuex";
 
 export default {
   data() {
@@ -56,7 +60,7 @@ export default {
       ],
       title: "接口",
       api: {
-        apiId: 5,
+        apiId: 4,
       },
     };
   },
@@ -98,13 +102,13 @@ export default {
         acc[item.children] = item.data1;
         return acc;
       }, {});
-      this.api.apiId=this.apiId
+      this.api.apiId=this.$store.state.apiId
       const result = await Fetch("/aaw/api", this.api, "PUT");
       alert(result.msg);
       await this.updateApiData();
     },
     async updateApiData() {
-      this.api.apiId = this.apiId
+      this.api.apiId = this.$store.state.apiId
       const result = await Fetch("/api/id", this.api, "POST");
       this.api = result.data
       for (let i = 0; i < this.titleList.length; i++) {
@@ -115,12 +119,16 @@ export default {
   async created() {
     await this.updateApiData();
   },
+  computed:{
+    ...mapState(['apiId'])
+  },
   watch:{
-    async apiId() {
+    async apiId(){
+      // alert(this.$store.state.apiId)
+      // alert("重置api展示"+this.apiId);
       await this.updateApiData();
     }
   },
-  props:['apiId'],
 };
 </script>
 
