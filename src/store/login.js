@@ -8,7 +8,8 @@ const store = new Vuex.Store({
         isLogin:false,//是否已登陆
         test:'测试',
         isShow:false,//登录窗口状态
-        apiId:0,
+        apiId:5,
+        me: {},
     },
     mutations:{
       login(state){
@@ -22,7 +23,10 @@ const store = new Vuex.Store({
       },
         change(state,n){
             state.apiId=n
-        }
-    }
+        },changeMyself(state,user){
+            state.me=user
+        },
+    },
+
 })
 export default store

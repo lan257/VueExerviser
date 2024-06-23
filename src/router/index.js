@@ -6,7 +6,7 @@ import BackBonePage from "@/views/BackBonePage.vue";
 import downloadApk from "@/views/downloadApk.vue";
 import ProjectAddress from "@/views/ProjectAdress.vue";
 import personCenter from '@/views/personCenter.vue';
-import useInWeb from '@/views/useInWeb.vue'
+import dishesMange from '@/views/dishesMange.vue'
 Vue.use(VueRouter)
 const router=new VueRouter({
     routes:[
@@ -15,7 +15,7 @@ const router=new VueRouter({
         { path: '/downloadApk',component:downloadApk },
         { path: '/Project',component:ProjectAddress },
         { path: '/personCenter',component:personCenter },
-        { path: '/useInWeb',component:useInWeb },
+        { path: '/dishes',component:dishesMange },
         { path: '/',component:BackBonePage },
     ]
 })

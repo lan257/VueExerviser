@@ -24,9 +24,9 @@
       <el-submenu index="6-1" ><template slot="title">订单管理</template>
         <el-menu-item index="6-1-1"><a href="">全部订单</a></el-menu-item>
         <el-menu-item index="6-1-2"><a href="">最近订单</a></el-menu-item>
+        <el-menu-item index="6-1-3"><a href="">购物车</a></el-menu-item>
       </el-submenu>
-      <el-menu-item index="6-2" ><span>购物车</span></el-menu-item>
-      <el-menu-item index="6-3" ><span>菜品管理</span></el-menu-item>
+      <el-menu-item index="6-3" ><router-link to="/dishes">菜品管理</router-link></el-menu-item>
       <el-menu-item index="6-4" ><template slot="title"><el-button type="text" @click="open">修改地址</el-button></template>
       </el-menu-item>
 <!--      <el-menu-item index="6-4" ><span>修改地址</span></el-menu-item>-->
@@ -37,8 +37,8 @@
     <el-submenu index="2">
     <template slot="title">language</template>
     <el-menu-item index="2-1" ><span @click="alert('已切换')">chinese</span></el-menu-item>
-      <el-menu-item index="2-2"><span @click="alert('未开发')">English</span></el-menu-item>
-      <el-menu-item index="2-3"><span @click="alert('未开发')">Japanese</span></el-menu-item>
+      <el-menu-item index="2-2"><span @click="alert('未开发')">English(未开发)</span></el-menu-item>
+      <el-menu-item index="2-3"><span @click="alert('未开发')">Japanese(未开发)</span></el-menu-item>
    </el-submenu>
 
 <!--    <el-menu-item index="5"><a :href="href[0]" v-show="this.$store.state.isLogin"  @click="click(0)"><span style="color:white">exit</span></a></el-menu-item>-->
@@ -84,10 +84,11 @@ export default {
         {'id':3,'value':'download for android'},
         {'id':4,'value':'use in web'},],
       me:{},
+      result:{},
       proUrl:'',
       search:'',
       // user:false,
-      href:['/','/','/','#/downloadApk','#/useInWeb','#/backBonePage','/backBonePage','/Project','/api','#/personCenter'],
+      href:['/','/','/','/downloadApk','/useInWeb','/backBonePage','/backBonePage','/Project','/api','/personCenter'],
       activeIndex: '1',
       activeIndex2: '1'
     }
@@ -96,7 +97,7 @@ export default {
     handleSelect(key, keyPath) {
       console.log(key, keyPath);
     },
-    ...mapMutations(['login', 'show', 'login2']),
+    ...mapMutations(['login', 'show', 'login2','changeMyself']),
     click(item) {
       if (item === 5) {
         this.show()
@@ -139,7 +140,7 @@ export default {
           message: '取消输入'
         });
       });
-    }
+    },
   },
   async created() {
     this.proUrl=vid +'/uploads';
@@ -151,10 +152,12 @@ export default {
       alert("校验失败")
       this.login();
     }
+    else {
     this.me=this.me.data
-    this.me = await Fetch('aaw/uid/selectUser',this.me,"Post");
+    this.me =await Fetch('/aaw/uid/selectUser',this.me,"POST");
     this.me=this.me.data
-    // this.user=!this.user
+    this.changeMyself(this.me)}
+    // // this.user=!this.user
   },
   props:["isLogin"],
 }

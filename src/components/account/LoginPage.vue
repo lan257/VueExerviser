@@ -22,10 +22,18 @@ export default {
       this.control="注册"
     },
     async login1() {
+      if(this.control==="注册"){
+        event.preventDefault(); // 阻止按钮的默认行为
+        const result= await Fetch("aaw/sign1", this.user,"POST");
+        alert(result.msg)
+      }else {
       event.preventDefault(); // 阻止按钮的默认行为
       console.log("登录操作")
       const result= await Fetch("/aaw/login", this.user,"POST");
-      alert(result.msg)
+        this.$message({
+          message: result.msg,
+          type: 'success'
+        });
       if(result.iu!==0){
       localStorage.setItem('token', result.data);//保存jwt
       this.login2()
@@ -37,7 +45,7 @@ export default {
         localStorage.setItem('password', '')
       }
       window.location.reload();
-    }}
+    }}}
   },
   created() {
     if (localStorage.getItem('password')!==''){
