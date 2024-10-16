@@ -137,7 +137,6 @@ export default{
     //删除菜品
     async del2(order) {
       this.result = await Fetch('/aaw/order/del', order, 'POST')
-      alert(this.result.msg)
       this.orderThing ? await this.shopCart():await this.getAllOrder()
     },
     async buyCartAll() {
@@ -202,12 +201,12 @@ export default{
       </el-header>
       <el-main>
 <!--        {{this.form.name}}{{this.form.price}}-->
-        <el-dialog title="收货地址" :visible.sync="dialogFormVisible">
+        <el-dialog title="添加菜品" :visible.sync="dialogFormVisible">
           <el-form :model="form">
-            <el-form-item label="活动名称" :label-width="formLabelWidth">
+            <el-form-item label="菜品名称" :label-width="formLabelWidth">
               <el-input v-model="form.name" autocomplete="off"></el-input>
             </el-form-item>
-            <el-form-item label="活动单价" :label-width="formLabelWidth">
+            <el-form-item label="菜品单价" :label-width="formLabelWidth">
               <el-input v-model="form.price" autocomplete="off"></el-input>
             </el-form-item>
           </el-form>

@@ -120,8 +120,7 @@ export default {
       }
     },
     async update() {
-      const result = await Fetch('/aaw/baUpdate', this.me, "POST");
-      alert(result.msg)
+      await Fetch('/aaw/baUpdate', this.me, "POST");
     },
     open() {
       this.$prompt('请输入地址', '修改收货地址', {
