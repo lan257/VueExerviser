@@ -6,6 +6,11 @@
 ## 技术栈
 采用前端三剑客（html,js,css）为基础，借助vue展示网页，借助eiment-ui设计网站页面，以ngrok为媒介与HTTP协议与云服务器交互
 
+## 展示
+![主页展示](imgShow/index.png)  
+![api文档展示](imgShow/api.png) 
+![菜品推荐展示](imgShow/Recommended.png) 
+![项目展示](imgShow/user.png) 
 
 ## Project setup
 ```
@@ -32,6 +37,7 @@ See [Configuration Reference](https://cli.vuejs.org/config/).
 
 
 ## 现状
-目前备考，准备秋招，故部署项目  
+目前备考，准备秋招，故维护项目    
+
 
 （<del>目前大三下学期，在校辅修计算机，目前学校在学springboot，我在上学期已经学过了，但会为了跟老师的进度根据需求简单更新我库当中服务器项目，另外现在在备考研究生考试，时间不充裕，只有空余时间更新项目，在复习计算机基础知识时，会拿vue练手实践，所以会相对经常更新，而android项目目前没什么想做的，暂时不会做太大的更新。</del>）
