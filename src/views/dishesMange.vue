@@ -176,8 +176,7 @@ export default{
   <el-container style=" border: 1px solid #eee">
     <el-aside width="200px" style="background-color: rgb(238, 241, 246)">
       <el-menu :default-openeds="['1', '3']">
-        <el-menu-item index="1" @click="update"><i class="el-icon-message"></i>菜品管理
-        </el-menu-item>
+        <el-menu-item index="1" @click="update"><i class="el-icon-message"></i>菜品管理</el-menu-item>
         <el-submenu index="2">
           <template slot="title"><i class="el-icon-menu"></i>订单管理</template>
             <el-menu-item index="2-1" @click="getAllOrder">全部订单</el-menu-item>
@@ -232,7 +231,6 @@ export default{
           </el-table-column>
           <el-table-column prop="isCanBuy" v-if="this.thing===2" label="起售/停售">
             <template scope="scope">
-
             <span :class="{'text-danger': !scope.row, 'text-success': scope.row}">
               <el-button type="primary" plain @click="eIs(scope.row)"> {{ !scope.row.isCanBuy ? '起售' : '停售' }}</el-button></span>
           </template>

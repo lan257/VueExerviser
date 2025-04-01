@@ -13,5 +13,8 @@ new Vue({
   render: h => h(App),
   router,
   store,
+  // d3,
+
+
   // apiStore,
 }).$mount('#app')

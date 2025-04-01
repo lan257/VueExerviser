@@ -34,6 +34,7 @@
     </el-submenu>
     <el-menu-item index="3"><a href="" @click="click(4)">use in web</a></el-menu-item>
     <el-menu-item index="4"><a href="#/downloadApk" @click="click(3)">use in android</a></el-menu-item>
+    <el-menu-item index="5"><a href="#/mindMap" >mindMap</a></el-menu-item>
     <el-submenu index="2">
     <template slot="title">language</template>
     <el-menu-item index="2-1" ><span @click="alert('已切换')">chinese</span></el-menu-item>
@@ -81,6 +82,7 @@ export default {
          ],
       choose2:[
         {'id':1,'value':'language'},
+        {'id':2,'value':'mindMap'},
         {'id':3,'value':'download for android'},
         {'id':4,'value':'use in web'},],
       me:{},
@@ -88,7 +90,7 @@ export default {
       proUrl:'',
       search:'',
       // user:false,
-      href:['/','/','/','/downloadApk','/useInWeb','/backBonePage','/backBonePage','/Project','/api','/personCenter'],
+      href:['/','/','/','/downloadApk','/useInWeb','/backBonePage','/backBonePage','/Project','/api','/personCenter','/mindMap'],
       activeIndex: '1',
       activeIndex2: '1'
     }
