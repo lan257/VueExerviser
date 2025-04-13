@@ -6,8 +6,9 @@ import BackBonePage from "@/views/BackBonePage.vue";
 import downloadApk from "@/views/downloadApk.vue";
 import ProjectAddress from "@/views/ProjectAdress.vue";
 import personCenter from '@/views/personCenter.vue';
-import dishesMange from '@/views/dishesMange.vue'
+import dishesMange from '@/views/dishesMange.vue';
 import mindMap from "@/components/mindMap/mindMap.vue";
+import write from "@/components/kainghe/write.vue";
 Vue.use(VueRouter)
 const router=new VueRouter({
     routes:[
@@ -19,6 +20,7 @@ const router=new VueRouter({
         { path: '/dishes',component:dishesMange },
         { path: '/',component:BackBonePage },
         { path: '/mindMap',component:mindMap},
+        { path: '/kainghe',component:write},
     ]
 })
 export default router

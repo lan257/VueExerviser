@@ -53,7 +53,7 @@ export default{
     },
     //自己菜品更新
     async update(){
-      this.item = await GetFetch('/aaw/dishes/select/mine', 'GET')
+      this.item = await GetFetch('/aaw/dishes/select/mine')
       this.dishes=this.item.data
       this.tableData=this.dishes
       this.thing=2
@@ -67,7 +67,7 @@ export default{
     },
     //推荐刷新
     async referrer(){
-      this.item = await GetFetch('/aaw/dishes/select/all', 'GET')
+      this.item = await GetFetch('/aaw/dishes/select/all')
       this.dishes=this.item.data
       this.tableData=this.dishes
       this.thing=1;//推荐
@@ -81,7 +81,7 @@ export default{
     // },
     //购物车
     async shopCart(){
-      this.result= await GetFetch("/aaw/order/select/buyCart","GET");
+      this.result= await GetFetch("/aaw/order/select/buyCart");
       this.orderList=this.result.data
       this.type=0;
       this.thing=0;
@@ -89,7 +89,7 @@ export default{
     },
     //获得全部订单
     async getAllOrder(){
-      this.result= await GetFetch("/aaw/order/select/mine","GET");
+      this.result= await GetFetch("/aaw/order/select/mine");
       this.orderList=this.result.data
       this.type=0;
       this.thing=0;

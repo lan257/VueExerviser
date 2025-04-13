@@ -1,0 +1,227 @@
+<!--// handleOpen(key, keyPath) {-->
+<!--//   console.log(key, keyPath);-->
+<!--// },-->
+<!--// handleClose(key, keyPath) {-->
+<!--//   console.log(key, keyPath);-->
+<!--// },-->
+
+<!--//   {d3.selectAll('.test1').text("测试1-1成功!!!").style('color','red')-->
+<!--//   d3.selectAll('#test1-2').text('测试1-2成功！！！').style('font-size','32px')-->
+<!--//   d3.selectAll('.test2-1').style('color','yellow').datum(this.dataset).text(function (d,i){return '测试2-1:数据'+i+':'+d})-->
+<!--//   d3.selectAll('.test2-1').style('color','yellow').datum(this.dataset).text(function (d,i){return '测试2-1:数据'+i+':'+d})-->
+<!--//   d3.selectAll('.test3-1').append('p').text('测试3-1成功')-->
+<!--//   d3.selectAll('.test3-2').insert('p').text('测试3-2成功')-->
+<!--//   d3.selectAll('.test3-3').remove()}-->
+<!--//   //实验四-->
+<!--//   {var width = 400,height = 150,rectHeight = 25-->
+<!--//   var svg4_1 =d3.select('svg').style('width',width).style('height',height).style('background',' #42b983').append('svg')-->
+<!--//   svg4_1.selectAll('rect').data(this.dataset).enter().append('rect')-->
+<!--//       .attr('x',20)-->
+<!--//       .attr('y',function (d,i){return i * rectHeight })-->
+<!--//       .attr('width',function (d){return d})-->
+<!--//       .attr('height',rectHeight-2)-->
+<!--//       .attr ('fill','steelblue')}-->
+<!--//   //实验五-->
+<!--//   {//比例尺-->
+<!--//   var linear5_1 = d3.scaleLinear().domain([0,d3.max(this.dataset5_1)]).range([0,width*1.3])-->
+<!--//   var svg5_1 =d3.selectAll('.test5-1').style('width',width*1.5).style('height',height*1.5).style('background',' #42b983').append('svg')-->
+<!--//   svg5_1.selectAll('rect').data(this.dataset5_1).enter().append('rect')-->
+<!--//       .attr('x',30)-->
+<!--//       .attr('y',function (d,i){return i * rectHeight * 1.5 })-->
+<!--//       .attr('width',function(d){return linear5_1(d);})-->
+<!--//       .attr('height',rectHeight * 1.5-3)-->
+<!--//       .attr ('fill','steelblue')}-->
+<!--//   //实验六-->
+<!--//   {var linear6_1 = d3.scaleLinear().domain([0,3500]).range([0,400])-->
+<!--//   var svg6_1 =d3.selectAll('.test6-1').style('width',width*1.3).style('height',height*1.7).style('background',' #42b983').append('svg')-->
+<!--//   svg6_1.selectAll('rect').data(this.dataset6_1).enter().append('rect')-->
+<!--//       .attr('x',20)-->
+<!--//       .attr('y',function (d,i){return i * rectHeight*1.5 })-->
+<!--//       .attr('width',function(d){return linear6_1(d);})-->
+<!--//       .attr('height',rectHeight*1.5-2)-->
+<!--//       .attr ('fill','steelblue')-->
+<!--//   var xAxis =d3.axisBottom(linear6_1)-->
+<!--//   svg6_1.append('g')-->
+<!--//       .attr("transform","translate(20,187.5)")-->
+<!--//       .call(xAxis);}-->
+<!--//   //实验七-->
+<!--//   {var svg7_1= d3.select('.test7-1').style('width',400).style('height',400).style('background',' #42b983').append('svg')-->
+<!--//   var padding ={left:30,right:30,top:20,bottom:20}-->
+<!--//   var xScale7_1=d3.scaleLinear().domain([0,this.dataset7_1.length]).range([0,400-padding.right-padding.left])-->
+<!--//   var yScale7_1=d3.scaleLinear().domain([0,d3.max(this.dataset7_1)]).range([400-padding.top-padding.bottom,0])-->
+<!--//-->
+<!--//   var yAxis7_1=d3.axisLeft(yScale7_1)-->
+<!--//   var xAxis7_1=d3.axisBottom(xScale7_1)-->
+<!--//   //矩形之间的空白-->
+<!--//   var rectPadding7 = 4;-->
+<!--//   svg7_1.selectAll('rect').data(this.dataset7_1).enter().append('rect')-->
+<!--//       .attr('x',function (d,i){-->
+<!--//         return 340/8*i+rectPadding7/2+padding.left-->
+<!--//       })-->
+<!--//       .attr('y',function (d){return yScale7_1(d)+padding.top })-->
+<!--//       .attr("width", 340/8-rectPadding7 )-->
+<!--//       .attr("height", function(d){-->
+<!--//         return 400 - padding.top - padding.bottom -yScale7_1(d);})-->
+<!--//       .attr ('fill','steelblue')-->
+<!--//-->
+<!--//   svg7_1.append('g')-->
+<!--//       .attr("transform","translate(" + padding.left + "," + padding.top + ")")-->
+<!--//       .call(yAxis7_1);-->
+<!--//-->
+<!--//   svg7_1.append('g')-->
+<!--//       .attr("transform","translate(" + padding.left + "," + (400 - padding.bottom) + ")")-->
+<!--//       .call(xAxis7_1);}-->
+<!--//   {var svg8_1= d3.select('.test8-1').style('width',400).style('height',400).style('background',' #42b983').append('svg')-->
+<!--//   var xScale8_1=d3.scaleLinear().domain([0,this.dataset7_1.length]).range([0,400-padding.right-padding.left])-->
+<!--//   var yScale8_1=d3.scaleLinear().domain([0,d3.max(this.dataset7_1)]).range([400-padding.top-padding.bottom,0])-->
+<!--//   var yAxis8_1=d3.axisLeft(yScale8_1)-->
+<!--//   var xAxis8_1=d3.axisBottom(xScale8_1)-->
+<!--//   //矩形之间的空白-->
+<!--//   svg8_1.selectAll('rect').data(this.dataset7_1).enter().append('rect')-->
+<!--//       // .append('p').text(function (d){return d;})-->
+<!--//       .attr('x',function (d,i){return 340/8*i+rectPadding7/2+padding.left})-->
+<!--//       .attr('y',380)-->
+<!--//       .attr("width", 340/8-rectPadding7 ).attr ('fill','steelblue')-->
+<!--//       // .attr('height',0)-->
+<!--//       // .transition().delay(function (d){return 100*d}).duration(3000)-->
+<!--//       .attr('height',0)-->
+<!--//       .transition().duration(function (d){return 100*d})-->
+<!--//       // .delay()-->
+<!--//       .attr('y',function (d){return yScale8_1(d)+padding.top })-->
+<!--//       .attr("height", function(d){-->
+<!--//     return 400 - padding.top - padding.bottom -yScale8_1(d);})-->
+<!--//-->
+<!--//   // svg8_1.selectAll('p').data(this.dataset7_1).enter().append('p')-->
+<!--//   //     .text(function (d){return d;})-->
+<!--//   //     .attr('x',function (d,i){return 340/8*i+rectPadding7/2+padding.left})-->
+<!--//   //     .attr('y',function (d){return yScale8_1(d)+padding.top })-->
+<!--//   svg8_1.append('g')-->
+<!--//       .attr("transform","translate(" + padding.left + "," + padding.top + ")")-->
+<!--//       .call(yAxis8_1);-->
+<!--//   svg8_1.append('g')-->
+<!--//       .attr("transform","translate(" + padding.left + "," + (400 - padding.bottom) + ")")-->
+<!--//       .call(xAxis8_1);-->
+<!--//-->
+<!--//   //  svg8_1.selectAll('rect').attr ('fill','steelblue')-->
+<!--//   //  .transition().duration(3000).delay(function (d){return 3000+100*d}).attr('fill','red')-->
+<!--//   var svg8_2= d3.select('.test8-2').style('width',400).style('height',400).style('background',' #42b983').append('svg')-->
+<!--//   var circle1 = svg8_2.append("circle")-->
+<!--//       .attr("cx", 100)-->
+<!--//       .attr("cy", 100)-->
+<!--//       .attr("r", 45)-->
+<!--//       .style("fill","green");-->
+<!--//   //在1秒（1000毫秒）内将圆心坐标由100变为300-->
+<!--//   circle1.transition()-->
+<!--//       .duration(1000)-->
+<!--//       .attr("cx", 300);-->
+<!--//   var circle2 = svg8_2.append("circle")-->
+<!--//       .attr("cx", 100)-->
+<!--//       .attr("cy", 100)-->
+<!--//       .attr("r", 45)-->
+<!--//       .style("fill","green");-->
+<!--//   //与第一个圆一样，省略部分代码-->
+<!--//   //在1.5秒（1500毫秒）内将圆心坐标由100变为300，-->
+<!--//   //将颜色从绿色变为红色-->
+<!--//   circle2.transition()-->
+<!--//       .duration(1500)-->
+<!--//       .attr("cx", 300)-->
+<!--//       .attr('cy',300)-->
+<!--//       .style("fill","red");-->
+<!--//   var circle3 = svg8_2.append("circle")-->
+<!--//       .attr("cx", 100)-->
+<!--//       .attr("cy", 100)-->
+<!--//       .attr("r", 45)-->
+<!--//       .style("fill","green");-->
+<!--//   //与第一个圆一样，省略部分代码-->
+<!--//   //在2秒（2000毫秒）内将圆心坐标由100变为300-->
+<!--//   //将颜色从绿色变为红色-->
+<!--//   //将半径从45变成25-->
+<!--//   //过渡方式采用bounce（在终点处弹跳几次）-->
+<!--//   circle3.transition()-->
+<!--//       .duration(2000)-->
+<!--//       .style("fill","red")-->
+<!--//       .attr("r", 25);}-->
+<!--//   //实验九-->
+<!--//   {var svg9_1= d3.select('.test9-1').style('width',400).style('height',400).style('background',' #42b983').append('svg')-->
+<!--//   var xScale9_1=d3.scaleLinear().domain([0,this.dataset7_1.length]).range([0,400-padding.right-padding.left])-->
+<!--//   var yScale9_1=d3.scaleLinear().domain([0,d3.max(this.dataset7_1)]).range([400-padding.top-padding.bottom,0])-->
+<!--//   var yAxis9_1=d3.axisLeft(yScale9_1)-->
+<!--//   var xAxis9_1=d3.axisBottom(xScale9_1)-->
+<!--//   svg9_1.selectAll('rect').data(this.dataset7_1).enter().append('rect')-->
+<!--//       .attr('x',function (d,i){return 340/8*i+rectPadding7/2+padding.left})-->
+<!--//       .attr('y',380)-->
+<!--//       .attr("width", 340/8-rectPadding7 ).attr ('fill','steelblue')-->
+<!--//       .attr('height',0)-->
+<!--//       .transition().duration(function (d){return 50*d})-->
+<!--//       .attr('y',function (d){return yScale9_1(d)+padding.top })-->
+<!--//       .attr("height", function(d){-->
+<!--//         return 400 - padding.top - padding.bottom -yScale9_1(d);})-->
+<!--//-->
+<!--//   svg9_1.append('g')-->
+<!--//       .attr("transform","translate(" + padding.left + "," + padding.top + ")")-->
+<!--//       .call(yAxis9_1);-->
+<!--//   svg9_1.append('g')-->
+<!--//       .attr("transform","translate(" + padding.left + "," + (400 - padding.bottom) + ")")-->
+<!--//       .call(xAxis9_1);-->
+<!--//   svg9_1.selectAll('rect').on('mouseover',function (){-->
+<!--//     d3.select(this).transition().style("fill","red");-->
+<!--//   }).on('mouseout',function (){-->
+<!--//     d3.select(this).transition().duration(500).style("fill","steelblue");-->
+<!--//   })}-->
+<!--<div>-->
+<!--&lt;!&ndash;          <div v-show="this.study" >&ndash;&gt;-->
+<!--&lt;!&ndash;          <h2>这是思维导图主页面测试实验</h2>&ndash;&gt;-->
+<!--&lt;!&ndash;          <h3>实验一：获取元素</h3>&ndash;&gt;-->
+<!--&lt;!&ndash;          <p class="test1">测试1-1</p>&ndash;&gt;-->
+<!--&lt;!&ndash;          <p class="test1">测试1-1</p>&ndash;&gt;-->
+<!--&lt;!&ndash;          <p id="test1-2">测试1-2</p>&ndash;&gt;-->
+<!--&lt;!&ndash;          <hr><hr>&ndash;&gt;-->
+<!--&lt;!&ndash;          <h3>实验二：绑定数据</h3>&ndash;&gt;-->
+<!--&lt;!&ndash;          <p class="test2-1">测试2-1</p>&ndash;&gt;-->
+<!--&lt;!&ndash;          <p class="test2-2">测试2-2数组绑定暂停工</p>&ndash;&gt;-->
+<!--&lt;!&ndash;          <hr><hr>&ndash;&gt;-->
+<!--&lt;!&ndash;          <h3>实验三：增删元素</h3>&ndash;&gt;-->
+<!--&lt;!&ndash;          <p class="test3-1">测试3-1</p>&ndash;&gt;-->
+<!--&lt;!&ndash;          <p class="test3-2">测试3-2</p>&ndash;&gt;-->
+<!--&lt;!&ndash;          实验3-3：<p class="test3-3">测试3-3</p>成功&ndash;&gt;-->
+<!--&lt;!&ndash;          <hr><hr>&ndash;&gt;-->
+<!--&lt;!&ndash;          <h3>实验四：简单制图（长条）</h3>&ndash;&gt;-->
+<!--&lt;!&ndash;          <svg class="test4-1" >&ndash;&gt;-->
+<!--&lt;!&ndash;            <rect></rect>&ndash;&gt;-->
+<!--&lt;!&ndash;          </svg>&ndash;&gt;-->
+<!--&lt;!&ndash;          <hr><hr>&ndash;&gt;-->
+<!--&lt;!&ndash;          <h3>实验五：简单制图（比例尺）</h3>&ndash;&gt;-->
+<!--&lt;!&ndash;          <svg class="test5-1" >&ndash;&gt;-->
+<!--&lt;!&ndash;            <rect></rect>&ndash;&gt;-->
+<!--&lt;!&ndash;          </svg>&ndash;&gt;-->
+<!--&lt;!&ndash;          <p class="test2-2">测试5-2序号比例尺暂停工</p>&ndash;&gt;-->
+<!--&lt;!&ndash;          <hr><hr>&ndash;&gt;-->
+<!--&lt;!&ndash;          <h3>实验六：坐标轴</h3>&ndash;&gt;-->
+<!--&lt;!&ndash;          <svg class="test6-1" >&ndash;&gt;-->
+<!--&lt;!&ndash;            <rect class="test6-2"></rect>&ndash;&gt;-->
+<!--&lt;!&ndash;          </svg>&ndash;&gt;-->
+<!--&lt;!&ndash;          <hr><hr>&ndash;&gt;-->
+<!--&lt;!&ndash;          <h3>实验七：条形图</h3>&ndash;&gt;-->
+<!--&lt;!&ndash;          <svg class="test7-1" >&ndash;&gt;-->
+<!--&lt;!&ndash;            <rect></rect>&ndash;&gt;-->
+<!--&lt;!&ndash;          </svg>&ndash;&gt;-->
+<!--&lt;!&ndash;          <hr><hr>&ndash;&gt;-->
+<!--&lt;!&ndash;          <h3>实验八：动图</h3>&ndash;&gt;-->
+<!--&lt;!&ndash;          <svg class="test8-1" >&ndash;&gt;-->
+<!--&lt;!&ndash;            <rect></rect>&ndash;&gt;-->
+<!--&lt;!&ndash;          </svg>&ndash;&gt;-->
+<!--&lt;!&ndash;          <svg class="test8-2" >&ndash;&gt;-->
+
+<!--&lt;!&ndash;          </svg>&ndash;&gt;-->
+<!--&lt;!&ndash;          <hr><hr>&ndash;&gt;-->
+<!--&lt;!&ndash;          <h3>实验九：交互图</h3>&ndash;&gt;-->
+<!--&lt;!&ndash;          <svg class="test9-1" >&ndash;&gt;-->
+<!--&lt;!&ndash;          </svg>&ndash;&gt;-->
+<!--&lt;!&ndash;          <h3>实验十：树图（思维导图）</h3>&ndash;&gt;-->
+<!--&lt;!&ndash;          <svg class="test10-1" >&ndash;&gt;-->
+<!--&lt;!&ndash;            <rect></rect>&ndash;&gt;-->
+<!--&lt;!&ndash;            <el-button></el-button>&ndash;&gt;-->
+<!--&lt;!&ndash;          </svg><br>&ndash;&gt;-->
+<!--&lt;!&ndash;        </div>&ndash;&gt;-->
+<!--&lt;!&ndash;          思维导图页面&ndash;&gt;-->
+<!--</div>-->

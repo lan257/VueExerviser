@@ -2,7 +2,7 @@
 //deliver(url,data)传入url(请求发送目标，例如myVariablelogin")
 // 和data(发送数据，如{name: '6512', email: '758439675'})
 //返回后端返回数据
-export let vid = "https://2w513euuq12k.ngrok.xiaomiqiu123.top";
+export let vid = "http://localhost:8080";//云服务器
 if(localStorage.getItem("yes")==="1"){
     vid="http://localhost:8080";
 }
@@ -32,7 +32,7 @@ export function Fetch(url, data, Method) {
             return response.json();
         });
 }
-export function GetFetch(url, Method) {
+export function GetFetch(url) {
     let token = localStorage.getItem('token');
     if (!token) {
         localStorage.setItem('token', "");//保存jwt
@@ -40,7 +40,7 @@ export function GetFetch(url, Method) {
     }
     url=vid+url;
     return fetch(url, {
-        method: Method,
+        method: "GET",
         headers: {
             'Content-Type': 'application/json',
             'Authorization': '' + token,

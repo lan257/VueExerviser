@@ -32,7 +32,7 @@
 <!--      <el-menu-item index="6-4" ><span>修改地址</span></el-menu-item>-->
       <el-menu-item index="6-5" ><span @click="click(0)">退出登录</span></el-menu-item>
     </el-submenu>
-    <el-menu-item index="3"><a href="" @click="click(4)">use in web</a></el-menu-item>
+    <el-menu-item index="3"><a href="#/kainghe" @click="click(4)">kainghe</a></el-menu-item>
     <el-menu-item index="4"><a href="#/downloadApk" @click="click(3)">use in android</a></el-menu-item>
     <el-menu-item index="5"><a href="#/mindMap" >mindMap</a></el-menu-item>
     <el-submenu index="2">
@@ -84,13 +84,13 @@ export default {
         {'id':1,'value':'language'},
         {'id':2,'value':'mindMap'},
         {'id':3,'value':'download for android'},
-        {'id':4,'value':'use in web'},],
+        {'id':4,'value':'kainghe'},],
       me:{},
       result:{},
       proUrl:'',
       search:'',
       // user:false,
-      href:['/','/','/','/downloadApk','/useInWeb','/backBonePage','/backBonePage','/Project','/api','/personCenter','/mindMap'],
+      href:['/','/','/','/downloadApk','/kainghe','/backBonePage','/backBonePage','/Project','/api','/personCenter','/mindMap'],
       activeIndex: '1',
       activeIndex2: '1'
     }
@@ -120,6 +120,7 @@ export default {
         // this.$emit('update:isLogin',false);
         // this.href='#/backBonePage'
       }
+
     },
     async update() {
       await Fetch('/aaw/baUpdate', this.me, "POST");
@@ -145,7 +146,7 @@ export default {
   },
   async created() {
     this.proUrl=vid +'/uploads';
-    this.me = await GetFetch('/aaw/getUserJwt',"GET");
+    this.me = await GetFetch('/aaw/getUserJwt');
     this.login2()
     if(this.me.iu===0){
       localStorage.setItem('token', '');
