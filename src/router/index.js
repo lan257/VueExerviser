@@ -23,4 +23,5 @@ const router=new VueRouter({
         { path: '/kainghe',component:write},
     ]
 })
+
 export default router
