@@ -23,6 +23,7 @@ export default {
       anything:false,
       SelectTypeComment:0,
       contract1:{},
+
     }
   },
   methods: {
@@ -115,7 +116,9 @@ export default {
                <h3>${data.title}</h3>
                <p>${data.content}</p>
                <button id="mark-button">标记</button>
-               <button id="contract-button">关联</button></div>`)
+               <button id="contract-button">关联</button>
+               <button id="cancel-contract-button">取消关联</button>
+               <button id="view-contract-button">查看关联</button></div>`)
           .on('click', function (event) {
             event.stopPropagation(); // 阻止事件冒泡，以屏蔽其他底层操作
           });
@@ -137,6 +140,27 @@ export default {
         let result = await Fetch('/aaw/contract', this.contract1,"POST");
         console.log(result);
         this.open1(result.msg)
+      });
+      d3.select('#cancel-contract-button').on('click' , async ()=> {
+        console.log("取消关联")
+        this.contract1.aid = data.nodeId;
+        this.contract1.au = this.map.uid;
+        this.contract1.bu=0;
+        this.contract1.type=4;
+        let result = await Fetch('/aaw/contract', this.contract1,"POST");
+        console.log(result);
+        this.open1(result.msg)
+      });
+      d3.select('#view-contract-button').on('click' , async ()=> {
+        console.log("查看关联")
+        this.MindMapShow=false
+        this.anything=true;
+        this.searchData =await GetFetch('/aaw/node/connection/'+data.nodeId)
+        console.log(this.searchData);
+        this.open1(this.searchData.msg);
+        //展示查询结果
+        this.searchData=this.searchData.data;
+        d3.select('.floating-card').remove()//关闭卡片
       });
     },
     //创建浮动节点卡片(编辑)
@@ -327,7 +351,9 @@ export default {
       if(row.type==="节点"){this.mindMap(this.dataTree,row.id);}
       else{this.mindMap(this.dataTree,0);}
       await this.getComment(this.map.mapId);
-      if(row.type==="批注"){this.SelectTypeComment=row.id;}
+      if(row.type==="批注"){
+        console.log('批注'+row.id);
+        this.SelectTypeComment=row.id;}
       this.open1("详情成功：" + row.title);
     },
 
@@ -530,19 +556,10 @@ export default {
           <br><br>
           <el-table :data="tableData" stripe show-header="false">
             <el-table-column label="用户" prop="nickName" width="180">
-<!--              <template #default="{ row }">-->
-<!--                <div v-if="row.cid===this.SelectTypeComment" style="background-color:lightblue">{{ row.nickName }}</div>-->
-<!--              </template>-->
             </el-table-column >
             <el-table-column label="批注" prop="content">
-<!--              <template  #default="{ row }">-->
-<!--                <div v-if="row.cid===this.SelectTypeComment" style="background-color:lightblue">{{ row.content }}</div>-->
-<!--              </template>-->
             </el-table-column>
             <el-table-column label="日期" style="display: none" prop="time" width="180" sortable>
-<!--              <template #default="{ row }">-->
-<!--                <div v-if="row.cid===this.SelectTypeComment" style="background-color:lightblue">{{ row.time }}</div>-->
-<!--              </template>-->
             </el-table-column>
           </el-table>
           </div>
