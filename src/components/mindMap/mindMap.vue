@@ -22,6 +22,7 @@ export default {
       node:{title: "", content:"", x:0},
       anything:false,
       SelectTypeComment:0,
+      contract1:{},
     }
   },
   methods: {
@@ -112,12 +113,31 @@ export default {
           .html(`<div style="position: relative;">
                <span style="position: absolute; right: 10px; top: 10px; cursor: pointer; font-size: 16px;color: blue;">x</span><br>
                <h3>${data.title}</h3>
-               <p>${data.content}</p></div>`)
+               <p>${data.content}</p>
+               <button id="mark-button">标记</button>
+               <button id="contract-button">关联</button></div>`)
           .on('click', function (event) {
             event.stopPropagation(); // 阻止事件冒泡，以屏蔽其他底层操作
           });
       // 添加关闭卡片的功能
-      d3.select('.floating-card span').on('click', function () {d3.select('.floating-card').remove();})
+      d3.select('.floating-card span').on('click', function () {d3.select('.floating-card').remove();});
+      d3.select('#mark-button').on('click' , ()=>{
+        console.log("标记")
+        localStorage.setItem('markNid',data.nodeId);
+        localStorage.setItem('markUid',this.map.uid);
+        this.open1('标记成功')
+      });
+      d3.select('#contract-button').on('click' , async ()=> {
+        console.log("关联")
+        this.contract1.aid = data.nodeId;
+        this.contract1.au = this.map.uid;
+        this.contract1.bid= parseInt( localStorage.getItem('markNid'));
+        this.contract1.bu = parseInt(  localStorage.getItem('markUid'));
+        this.contract1.type=1;
+        let result = await Fetch('/aaw/contract', this.contract1,"POST");
+        console.log(result);
+        this.open1(result.msg)
+      });
     },
     //创建浮动节点卡片(编辑)
     editFloatingCard(data, mode) {
@@ -155,6 +175,7 @@ export default {
       d3.select('.floating-card span').on('click', function () {
         d3.select('.floating-card').remove();
       });
+
 
       // 添加确定按钮的功能
       d3.select('#confirm-button').on('click', async () => {
@@ -274,6 +295,10 @@ export default {
         case 5://收藏
             this.isMine=false;
           url = url+'/stars';
+          break;
+        case 6://查询更多作者思维导图
+              this.isMine=false;
+              url = url+'/Uid/'+this.map.uid;
           break;
       }
       this.searchData = await GetFetch(url);
@@ -487,7 +512,10 @@ export default {
 
 <!--          思维导图相关展示-->
           <div v-show="MindMapShow">
-            <h2 style="text-align: center">{{title}}</h2>
+            作者：{{this.map.nickName}}
+<!--            标蓝下划线-->
+            <span @click ="MindMapShow=false;selectMindMap(6)" style="text-decoration: underline;color: blue;cursor: pointer;">  查看更多</span>
+            <h2 style="text-align: center">{{this.map.title}}</h2>
             <svg class="test11-1" >
               <rect></rect>
             </svg><br>
